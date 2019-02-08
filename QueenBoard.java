@@ -26,7 +26,21 @@ public class QueenBoard{
     return false;
   }
   private boolean removeQueen(int r, int c){
+    //check to make sure the loc is a queen
     if (board[r][c] == -1){
+      //remove the places that have been marked
+      for (int i = 0; i < board.length; i++){
+        //vertically
+        board[i][c]--;
+        //horizontally
+        board[r][i]--;
+        //diagonally y = x
+        //check bounds
+        if (r-i > 0 && c+i < board.length) board[r-i][i+c]--;
+        //diagonally y = -x
+        //check bounds
+        if (r+i > 0 && c+i < board.length) board[r+i][c+i]--;
+      }
       board[r][c] = 0;
       return true;
     }
