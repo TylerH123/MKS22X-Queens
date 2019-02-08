@@ -12,8 +12,11 @@ public class QueenBoard{
     return false;
   }
   private boolean removeQueen(int r, int c){
-    board[r][c] = 0;
-    return true;
+    if (board[r][c] == -1){
+      board[r][c] = 0;
+      return true;
+    }
+    return false;
   }
   /**
   *@return The output string formatted as follows:
@@ -45,7 +48,11 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
-    if ()
+    return solve(0,0, board);
+  }
+  //helper function for solve
+  public boolean solve(int r, int c, int[][] b){
+    return false;
   }
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
