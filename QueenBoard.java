@@ -102,19 +102,20 @@ public class QueenBoard{
     if (c >= board.length){
       return true;
     }
+    //if the row is greater than board size then go back a column
+    if (r >= board.length){
+      return solve(0,c-1);
+    }
     //recursive call if queen can be placed
     if (addQueen(r,c)){
       //then move to next column
-      return solve(r,c+1);
+      return solve(0,c+1);
     }
     //if cannot add queen
     else{
       //remove the queen that was placed
+      //will only happen if backtracked and lands on a spot a previous queen is sitting on
       removeQueen(r,c);
-      //if the row is greater than board size then go back a column
-      if (r >= board.length){
-        return solve(0,c-1);
-      }
       //otherwise just go down a row
       return solve(r+1,c);
     }
@@ -124,7 +125,11 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    return 0;
+    int count = 0;
+    if (solve()){
+      count++;
+    }
+    return count;
   }
   //for debugging
   public int[][] board(){
@@ -134,7 +139,7 @@ public class QueenBoard{
 
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(4);
-    //System.out.println(q.solve());
+    System.out.println(q.solve());
     //q.addQueen(0,0);
     int[][] b = q.board();
     /**for (int i = 0; i < b.length; i++){
@@ -143,10 +148,11 @@ public class QueenBoard{
       }
       System.out.println();
     }**/
-    System.out.println(q.toString());
+    /**System.out.println(q.toString());
     q.addQueen(2,1);
     System.out.println(q.toString());
     q.removeQueen(0,0);
     System.out.println(q.toString());
+    **/
   }
 }
