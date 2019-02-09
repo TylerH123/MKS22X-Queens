@@ -26,6 +26,7 @@ public class QueenBoard{
     return false;
   }
   private boolean removeQueen(int r, int c){
+    if (r >= board.length || c >= board.length) return false;
     //check to make sure the loc is a queen
     if (board[r][c] == -1){
       //remove the places that have been marked
@@ -85,10 +86,22 @@ public class QueenBoard{
     if (r >= board.length){
       return false;
     }
-    if (addQueen(r+1,c)){
-
+    //recursive call if queen can be placed
+    if (addQueen(r,c)){
+      //then move to next column
+      return solve(r,c+1);
     }
-
+    //if cannot add
+    else{
+      //remove the queen that was placed
+      removeQueen(r,c);
+      //check to make sure its not the first column
+      if (c > 0){
+        //then go back a column
+        return solve(r,c-1);
+      }
+      return solve(r+1,c);
+    }
   }
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
