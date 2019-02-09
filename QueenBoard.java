@@ -17,7 +17,7 @@ public class QueenBoard{
         if (r-i > 0 && c+i < board.length) board[r-i][i+c]++;
         //diagonally y = -x
         //check bounds
-        if (r+i > 0 && c+i < board.length) board[r+i][c+i]++;
+        if (r+i < board.length && c+i < board.length) board[r+i][c+i]++;
       }
       //place queen
       board[r][c] = -1;
@@ -40,7 +40,7 @@ public class QueenBoard{
         if (r-i > 0 && c+i < board.length) board[r-i][i+c]--;
         //diagonally y = -x
         //check bounds
-        if (r+i > 0 && c+i < board.length) board[r+i][c+i]--;
+        if (r+i < board.length && c+i < board.length) board[r+i][c+i]--;
       }
       board[r][c] = 0;
       return true;
@@ -95,11 +95,11 @@ public class QueenBoard{
     else{
       //remove the queen that was placed
       removeQueen(r,c);
-      //check to make sure its not the first column
-      if (c > 0){
-        //then go back a column
+      //if the row is greater than board size then go backa column
+      if (r >= board.length){
         return solve(r,c-1);
       }
+      //otherwise just go down a row
       return solve(r+1,c);
     }
   }
