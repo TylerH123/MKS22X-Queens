@@ -66,13 +66,16 @@ public class QueenBoard{
   */
   public String toString(){
     String output = "";
-    for (int i = 0; i < board.length; i++){
-      if (board[i][i] >= 0){
-        output += "_ ";
+    for (int r = 0; r < board.length; r++){
+      for (int c = 0; c < board[r].length; c++){
+        if (board[r][c] > 0){
+          output += "x ";
+        }
+        if (board[r][c] == -1){
+          output += "Q ";
+        }
       }
-      else if (board[i][i] == -1){
-        output += "Q ";
-      }
+      output += "\n";
     }
     return output;
   }
@@ -118,5 +121,12 @@ public class QueenBoard{
   */
   public int countSolutions(){
     return 0;
+  }
+
+  public static void main(String[] args){
+    QueenBoard q = new QueenBoard(4);
+    //System.out.println(q.solve());
+    q.addQueen(0,0);
+    System.out.println(q.toString());
   }
 }
