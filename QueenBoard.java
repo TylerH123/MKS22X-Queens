@@ -4,6 +4,13 @@ public class QueenBoard{
   public QueenBoard(int size){
     board = new int[size][size];
   }
+  private void clear(){
+    for (int r = 0; r < board.length; r++){
+      for (int c = 0; c < board[r].length;c++){
+        board[r][c] = 0;
+      }
+    }
+  }
   private boolean addQueen(int r, int c){
     if (board[r][c] == 0){
       //mark places that other queen cannot go
@@ -36,10 +43,8 @@ public class QueenBoard{
         //horizontally
         board[r][i]--;
         //diagonally y = x
-        //check bounds
         if (r-i > 0 && c+i < board.length) board[r-i][i+c]--;
         //diagonally y = -x
-        //check bounds
         if (r+i < board.length && c+i < board.length) board[r+i][c+i]--;
       }
       board[r][c] = 0;
@@ -77,6 +82,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
+    clear();
     return solve(0,0);
   }
   //helper function for solve
