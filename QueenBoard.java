@@ -81,11 +81,11 @@ public class QueenBoard{
   }
   //helper function for solve
   public boolean solve(int r, int c){
-    //one of the base cases
-    //will only happen if you can't place a queen
-    if (r >= board.length){
+    //will only happen if you can't place a queen and backtracking
+    if (c < 0){
       return false;
     }
+    //will only happen if all queens have been placed
     if (c >= board.length){
       return true;
     }
@@ -100,7 +100,7 @@ public class QueenBoard{
       removeQueen(r,c);
       //if the row is greater than board size then go back a column
       if (r >= board.length){
-        return solve(r,c-1);
+        return solve(0,c-1);
       }
       //otherwise just go down a row
       return solve(r+1,c);
