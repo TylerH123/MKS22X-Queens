@@ -86,16 +86,19 @@ public class QueenBoard{
     if (r >= board.length){
       return false;
     }
+    if (c >= board.length){
+      return true;
+    }
     //recursive call if queen can be placed
     if (addQueen(r,c)){
       //then move to next column
       return solve(r,c+1);
     }
-    //if cannot add
+    //if cannot add queen
     else{
       //remove the queen that was placed
       removeQueen(r,c);
-      //if the row is greater than board size then go backa column
+      //if the row is greater than board size then go back a column
       if (r >= board.length){
         return solve(r,c-1);
       }
