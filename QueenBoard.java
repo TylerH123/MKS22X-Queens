@@ -25,6 +25,8 @@ public class QueenBoard{
         //diagonally y = -x
         //check bounds
         if (r+i < board.length && c+i < board.length) board[r+i][c+i]++;
+        //System.out.println(toString());
+        System.out.println(r+i + "" + c+i);
       }
       //place queen
       board[r][c] = -1;
@@ -68,8 +70,12 @@ public class QueenBoard{
     String output = "";
     for (int r = 0; r < board.length; r++){
       for (int c = 0; c < board[r].length; c++){
+        //for debugging
         if (board[r][c] > 0){
           output += "x ";
+        }
+        if (board[r][c] == 0){
+          output += "_ ";
         }
         if (board[r][c] == -1){
           output += "Q ";
@@ -122,11 +128,23 @@ public class QueenBoard{
   public int countSolutions(){
     return 0;
   }
+  //for debugging
+  public int[][] board(){
+    return board;
+  }
+
 
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(4);
     //System.out.println(q.solve());
     q.addQueen(0,0);
+    int[][] b = q.board();
+    /**for (int i = 0; i < b.length; i++){
+      for (int j = 0; j < b.length; j++){
+        System.out.print(b[i][j] + " ");
+      }
+      System.out.println();
+    }**/
     System.out.println(q.toString());
   }
 }
