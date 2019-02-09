@@ -69,10 +69,10 @@ public class QueenBoard{
     for (int r = 0; r < board.length; r++){
       for (int c = 0; c < board[r].length; c++){
         //for debugging
-        if (board[r][c] > 0){
-          output += "x ";
-        }
-        if (board[r][c] == 0){
+        //if (board[r][c] > 0){
+        //  output += "x ";
+        //}
+        if (board[r][c] >= 0){
           output += "_ ";
         }
         if (board[r][c] == -1){
@@ -90,7 +90,12 @@ public class QueenBoard{
   */
   public boolean solve(){
     clear();
-    return solve(0,0);
+    if (solve(0,0)){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   //helper function for solve
   public boolean solve(int r, int c){
@@ -138,9 +143,10 @@ public class QueenBoard{
 
 
   public static void main(String[] args){
-    QueenBoard q = new QueenBoard(4);
+    QueenBoard q = new QueenBoard(5);
     System.out.println(q.solve());
     //q.addQueen(0,0);
+    System.out.println(q.toString());
     int[][] b = q.board();
     /**for (int i = 0; i < b.length; i++){
       for (int j = 0; j < b.length; j++){
