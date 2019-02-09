@@ -90,12 +90,7 @@ public class QueenBoard{
   */
   public boolean solve(){
     clear();
-    if (solve(0,0)){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return solve(0,0);
   }
   //helper function for solve
   public boolean solve(int r, int c){
@@ -143,7 +138,7 @@ public class QueenBoard{
 
 
   public static void main(String[] args){
-    QueenBoard q = new QueenBoard(5);
+    QueenBoard q = new QueenBoard(4);
     System.out.println(q.solve());
     //q.addQueen(0,0);
     System.out.println(q.toString());
