@@ -132,9 +132,15 @@ public class QueenBoard{
       return 1;
     }
     for (int i = 0; i < board.length; i++){
-      
+      //if queen can be added
+      if (addQueen(i,c)){
+        //then go to next column
+        count += countSolutions(c+1);
+        //remove queen after
+        removeQueen(i,c);
+      }
     }
-
+    return count;
   }
   //for debugging
   public int[][] board(){
