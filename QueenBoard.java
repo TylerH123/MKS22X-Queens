@@ -149,10 +149,10 @@ public class QueenBoard{
 
 
   public static void main(String[] args){
-    QueenBoard q = new QueenBoard(4);
-    System.out.println(q.solve());
+    QueenBoard q = new QueenBoard(8);
+    //System.out.println(q.solve());
     //q.addQueen(0,0);
-    System.out.println(q.toString());
+    //System.out.println(q.toString());
     int[][] b = q.board();
     /**for (int i = 0; i < b.length; i++){
       for (int j = 0; j < b.length; j++){
@@ -166,5 +166,6 @@ public class QueenBoard{
     q.removeQueen(0,0);
     System.out.println(q.toString());
     **/
+    System.out.println(q.countSolutions());
   }
 }
