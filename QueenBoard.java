@@ -90,46 +90,51 @@ public class QueenBoard{
   */
   public boolean solve(){
     clear();
-    return solve(0,0);
+    return solve(0);
   }
   //helper function for solve
-  public boolean solve(int r, int c){
-    //will only happen if you can't place a queen and backtracking
-    if (c < 0){
-      return false;
-    }
+  public boolean solve(int c){
     //will only happen if all queens have been placed
     if (c >= board.length){
       return true;
     }
-    //if the row is greater than board size then go back a column
-    if (r >= board.length){
-      return solve(0,c-1);
+    for (int i = 0; i < board.length; i++){
+      //recursive call if queen can be placed
+      if (addQueen(i,c)){
+        //then move to next column
+        if (solve(c+1)){
+          return true;
+        }
+        //if cannot add queen to the next column
+        else{
+          //backtrack
+          //remove the queen that was placed
+          removeQueen(i,c);
+        }
+      }
     }
-    //recursive call if queen can be placed
-    if (addQueen(r,c)){
-      //then move to next column
-      return solve(0,c+1);
-    }
-    //if cannot add queen
-    else{
-      //remove the queen that was placed
-      //will only happen if backtracked and lands on a spot a previous queen is sitting on
-      removeQueen(r,c);
-      //otherwise just go down a row
-      return solve(r+1,c);
-    }
+    return false;
   }
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
+    //clear board
+    clear();
+    return countSolutions(0);
+  }
+  public int countSolutions(int c){
+    //count of solutions
     int count = 0;
-    if (solve()){
-      count++;
+    //will only happen if all queens have been placed
+    if (c >= board.length){
+      return 1;
     }
-    return count;
+    for (int i = 0; i < board.length; i++){
+      
+    }
+
   }
   //for debugging
   public int[][] board(){
